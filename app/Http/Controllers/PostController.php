@@ -16,7 +16,6 @@ class PostController extends Controller
             ['id' => 3, 'title' => 'Javascript', 'post_creator' => 'Ali', 'created_at' => '2022-04-16 10:37:00'],
         ];
         
-        // dd($posts); for debugging
         return view('posts.index',[
             'posts' => $posts,
         ]);
@@ -29,7 +28,6 @@ class PostController extends Controller
 
     public function store()
     {
-        //return 'we are in store';
         return view('posts.store');
     }
 
@@ -41,7 +39,6 @@ class PostController extends Controller
             ['id' => 3, 'title' => 'Javascript', 'post_creator' => 'Ali', 'created_at' => '2022-04-16 10:37:00'],
         ];
         
-        // dd($posts); for debugging
         return view('posts.show',[
             'posts' => $posts[$postId-1],
         ]);
@@ -55,7 +52,6 @@ class PostController extends Controller
             ['id' => 3, 'title' => 'Javascript', 'post_creator' => 'Ali', 'created_at' => '2022-04-16 10:37:00'],
         ];
         
-        // dd($posts); for debugging
         return view('posts.edit',[
             'posts' => $posts[$postId-1],
         ]);
