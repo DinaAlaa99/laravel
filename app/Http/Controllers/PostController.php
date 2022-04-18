@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\User;
-
+use App\Post;
+use App\User;
+use Carbon\Carbon;
 class PostController extends Controller
 {   
     
@@ -28,7 +28,12 @@ class PostController extends Controller
 
     public function store()
     {
-        $data = $_POST;
+        $post = request()->all();
+        Post::create([
+            'title' => $post['title'],
+            'description' => $post['description']
+        ]);
+        return redirect()->route('posts.index');       
        
     }
 
@@ -58,7 +63,6 @@ class PostController extends Controller
        
         $post = Post::find($postId);
         $post->delete();
-        return redirect('/posts')->with('success','post deleted successfully..');
-       
+        return redirect()->route('posts.index');              
     }
 }
