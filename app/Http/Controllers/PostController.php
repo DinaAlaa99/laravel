@@ -7,7 +7,6 @@ use App\Models\Post;
 
 class PostController extends Controller
 {   
-    //posts-table id title desc 
     
     public function index()
     {
@@ -31,9 +30,9 @@ class PostController extends Controller
     public function show($postId)
     {
        
-        $posts = Post::all();
+        $post = Post::find($postId);
         return view('posts.show',[
-            'posts' => $posts[$postId-1],
+            'posts' => $post,
         ]);
        
     }
@@ -48,5 +47,13 @@ class PostController extends Controller
     }
     public function update(){
         return view('posts.update');
+    }
+    public function destroy($postId)
+    {
+       
+        $post = Post::find($postId);
+        $post->delete();
+        return redirect('/posts')->with('success','post deleted successfully..');
+       
     }
 }

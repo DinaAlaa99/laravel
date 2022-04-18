@@ -26,8 +26,13 @@
                 <td>
                     <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
                     <a href="{{ route('posts.edit', ['post' => $post['id']]) }}" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                </td>
+                    <form action="{{ route('posts.destroy', ['post' => $post['id']]) }}" onclick="return confirm('Are you sure?')" 
+                     method="POST" style="display:inline-block">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger">Delete</button>
+                    </form>
+                  </td>
               </tr>
               @endforeach
 
