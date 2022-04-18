@@ -21,7 +21,9 @@
               <tr>
                 <td>{{ $post['id'] }}</th>
                 <td>{{ $post['title'] }}</td>
-                <td>{{ $post['post_creator'] }}</td>
+                @foreach ($users as $user)
+                <td>{{ $user['name'] }}</td>
+                @endforeach
                 <td>{{ $post['created_at'] }}</td>
                 <td>
                     <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
@@ -32,7 +34,7 @@
                     @method('delete')
                     <button class="btn btn-danger">Delete</button>
                     </form>
-                  </td>
+                </td>
               </tr>
               @endforeach
 

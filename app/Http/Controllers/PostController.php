@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
-use Carbon\Carbon;
 class PostController extends Controller
 {   
     
     public function index()
     {
-       
         $posts = Post::all();
+        foreach($posts as $post)
+        {
+            $users[]=User::select('name')->where('id',$post['user_id'])->first();
+        }
+        
         return view('posts.index',[
             'posts' => $posts,
+            'users' =>$users
         ]);
     }
 
@@ -31,7 +35,8 @@ class PostController extends Controller
         $post = request()->all();
         Post::create([
             'title' => $post['title'],
-            'description' => $post['description']
+            'description' => $post['description'],
+            'user_id' => $post['post_creator']
         ]);
         return redirect()->route('posts.index');       
        
