@@ -11,14 +11,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        foreach($posts as $post)
-        {
-            $users[]=User::select('name')->where('id',$post['user_id'])->first();
-        }
         
         return view('posts.index',[
             'posts' => $posts,
-            'users' =>$users
         ]);
     }
 

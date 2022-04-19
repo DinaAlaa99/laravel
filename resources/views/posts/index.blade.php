@@ -21,9 +21,7 @@
               <tr>
                 <td>{{ $post['id'] }}</th>
                 <td>{{ $post['title'] }}</td>
-                @foreach ($users as $user)
-                <td>{{ $user['name'] }}</td>
-                @endforeach
+                <td>{{ $post->user->name }}</td>
                 <td>{{ $post['created_at'] }}</td>
                 <td>
                     <a href="{{ route('posts.show', ['post' => $post['id']]) }}" class="btn btn-info">View</a>
