@@ -10,11 +10,9 @@ class PostController extends Controller
     
     public function index()
     {
-        $posts = Post::all();
-        
-        return view('posts.index',[
-            'posts' => $posts,
-        ]);
+
+        $posts=Post::paginate(6);
+        return view('posts.index',compact('posts'));
     }
 
     public function create()
@@ -31,7 +29,7 @@ class PostController extends Controller
         Post::create([
             'title' => $post['title'],
             'description' => $post['description'],
-            'user_id' => $post['post_creator']
+            'user_id' => $post['post_creator'],
         ]);
         return redirect()->route('posts.index');       
        
