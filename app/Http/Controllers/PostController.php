@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use Carbon\Carbon;
 class PostController extends Controller
 {   
     
@@ -40,7 +41,8 @@ class PostController extends Controller
        
         $post = Post::find($postId);
         return view('posts.show',[
-            'posts' => $post,
+            'post' => $post,
+            'created_at'=>Carbon::parse($post['created_at'])->format('l jS \of F Y h:i:s A')
         ]);
        
     }
