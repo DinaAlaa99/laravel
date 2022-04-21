@@ -3,27 +3,23 @@
 @section('title')Edit @endsection
 
 @section('content')
-<form method="Post" action="{{ route('posts.update', ['post' => $posts['id']]) }}">
+<form method="POST" action="{{ route('posts.update', ['post' => $post['id']] ) }}">
             @csrf
-            @method('PUT')
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label" name="Title">Title</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+            @method('put')
+            <div class="mb-3 mt-5">
+                <label for="exampleFormControlInput1" class="form-label" >Title</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="Title" value={{ $post->title }}>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label" name="Description">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="exampleFormControlTextarea1" class="form-label" >Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="Description" rows="3">{{ $post->description }}
+                </textarea>
             </div>
-
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label" name="Creator">Post Creator</label>
-                <select class="form-control">
-                    <option value="1" {{ $posts['id'] == 1 ? 'selected' : '' }}>Ahmed</option>
-                    <option value="2" {{ $posts['id'] == 2 ? 'selected' : '' }}>Mohamed</option>
-                    <option value="3" {{ $posts['id'] == 3 ? 'selected' : '' }}>Ali</option>
-                </select>
+            <div class="mb-3 ">
+                <label for="exampleFormControlInput1" class="form-label" name="Title">Post Creator</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" value={{$post->user->name}} readonly>
             </div>
 
-          <button class="btn btn-success">Update</button>
+          <button class="btn btn-success mt-3">Update</button>
         </form>
 @endsection

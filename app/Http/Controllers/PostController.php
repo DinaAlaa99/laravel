@@ -49,14 +49,22 @@ class PostController extends Controller
     public function edit($postId)
     {
        
-        $posts = Post::all();
+        $post = Post::find($postId);
+        $user = User::find($post->user_id);
         return view('posts.edit',[
-            'posts' => $posts[$postId-1],
+            'post' => $post,
         ]);
        
     }
-    public function update(){
-        return view('posts.update');
+    public function update($postId){
+        $post = request()->all();
+    
+        Post::where('id',$postId)->update([
+            'title' => $post['Title'],
+            'description' =>  $post ['Description'],            
+        ]);
+        return redirect()->route('posts.index');
+      
     }
     public function destroy($postId)
     {
