@@ -50,9 +50,11 @@ class PostController extends Controller
     {
        
         $post = Post::find($postId);
-        $user = User::find($post->user_id);
+        $users = User::all();
         return view('posts.edit',[
             'post' => $post,
+            'users' => $users
+
         ]);
        
     }
@@ -61,7 +63,8 @@ class PostController extends Controller
     
         Post::where('id',$postId)->update([
             'title' => $post['Title'],
-            'description' =>  $post ['Description'],            
+            'description' =>  $post ['Description'],   
+            'user_id' => $post['post_creator']         
         ]);
         return redirect()->route('posts.index');
       
