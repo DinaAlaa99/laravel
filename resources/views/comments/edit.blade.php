@@ -8,7 +8,7 @@
             @method('put')
             <div class="mb-3 mt-5">
                 <label for="exampleFormControlInput1" class="form-label" >Comment</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="body" value={{ $comment->body }}>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="body" value={{ $comment->body}}>
             </div>
             <div class="mb-3 mt-5">
                 <label for="exampleFormControlInput1" class="form-label" >Commentted By</label>

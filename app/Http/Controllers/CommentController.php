@@ -16,23 +16,23 @@ class CommentController extends Controller
              'commentable_type' => 'App\Post',
              'user_id'=>$commentData['comment_creator']
          ]);
+        
         return redirect()->route('posts.show',['post' => $postId]); 
     }
-    public function edit($postId)
+    public function edit($postId,$commentId)
     {
         $post = Post::find($postId);
-        $comment=$post->comments()->first();
+        $comment=$post->comments()->find($commentId);
         return view('comments.edit',[
             'post' => $post,
             'comment' => $comment
 
-        ]);
-       
+        ]);  
     }
-    public function update($postId){
+    public function update($postId,$commentId){
         $commentData = request()->all();
         $post=Post::find($postId);
-        $post->comments()->update([
+        $post->comments()->find($commentId)->update([
             'body' => $commentData['body']
         ]);
         return redirect()->route('posts.show',['post' => $postId]);
