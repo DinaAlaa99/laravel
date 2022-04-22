@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Comment;
 use Carbon\Carbon;
 class PostController extends Controller
 {   
@@ -12,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts=Post::paginate(6);
+        $posts=Post::paginate(10);
         return view('posts.index',compact('posts'));
     }
 
@@ -38,11 +39,15 @@ class PostController extends Controller
 
     public function show($postId)
     {
-       
+        $users = User::all();
         $post = Post::find($postId);
+        $comments=$post->comments;
         return view('posts.show',[
             'post' => $post,
+            'users' => $users,
+            'comments'=>$comments,
             'created_at'=>Carbon::parse($post['created_at'])->format('l jS \of F Y h:i:s A')
+            
         ]);
        
     }
