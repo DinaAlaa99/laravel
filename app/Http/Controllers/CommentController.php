@@ -12,8 +12,6 @@ class CommentController extends Controller
        $post=Post::find($postId);
        $post->comments()->create([
              'body' => $commentData['body'],
-             'commentable_id' =>$postId,
-             'commentable_type' => 'App\Post',
              'user_id'=>$commentData['comment_creator']
          ]);
         
