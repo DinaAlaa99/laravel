@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
@@ -25,20 +25,15 @@ class PostController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
-        request()->validate([
-            'title' => ['required','min:3'],
-            'description' => ['required', 'min:10'],
-        ]);
         $post = request()->all();
         Post::create([
             'title' => $post['title'],
             'description' => $post['description'],
             'user_id' => $post['post_creator'],
         ]);
-        return redirect()->route('posts.index');       
-       
+        return redirect()->route('posts.index');            
     }
 
     public function show($postId)
