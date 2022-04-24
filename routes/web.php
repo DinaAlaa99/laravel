@@ -29,3 +29,10 @@ Route::post('/posts/{post}/comments',[CommentController::class,'store'])->name('
 Route::get('/posts/{post}/comments/{comment}', [CommentController::class, 'edit'])->name('comments.edit');
 Route::put('/posts/{post}/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::delete('/posts/{post}/comments/{comment}',[CommentController::class,'destroy'])->name('comments.destroy');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
