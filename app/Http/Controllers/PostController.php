@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
@@ -62,9 +63,9 @@ class PostController extends Controller
         ]);
        
     }
-    public function update($postId){
+    public function update($postId,UpdatePostRequest $request){
+       
         $post = request()->all();
-    
         Post::where('id',$postId)->update([
             'title' => $post['Title'],
             'description' =>  $post ['Description'],   
