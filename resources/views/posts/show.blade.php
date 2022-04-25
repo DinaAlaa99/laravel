@@ -69,8 +69,11 @@
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Add Comment</label>
-                <textarea class="form-control" name='body' id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea class="form-control @error('body') is-invalid @enderror" name='body' id="exampleFormControlTextarea1" rows="2"></textarea>
             </div>
+            @error('body')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Comment Creator</label>
                 <select class="form-control" name='comment_creator'>

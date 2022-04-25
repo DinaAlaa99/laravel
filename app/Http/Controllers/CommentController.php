@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use App\Http\Requests\StoreCommentRequest;
 class CommentController extends Controller
 {
-    public function store($postId){
+    public function store($postId,StoreCommentRequest $request){
        $commentData= request()->all(); 
        $post=Post::find($postId);
        $post->comments()->create([
