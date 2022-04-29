@@ -39,6 +39,15 @@
         <div class="alert alert-danger ">{{ $message }}</div>
         @enderror
 
+        <div class="mb-3">
+            <label for="">Upload Image</label>
+            <input type="file" id="avatar" name="avatar" class="@error('avatar') is-invalid @enderror form-control">
+            @error('avatar')
+            <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+            </div>
+            @enderror
+        </div>
+
         <button class="btn btn-success">Create</button>
     </form>
 @endsection

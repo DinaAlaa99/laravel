@@ -6,8 +6,9 @@ use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
-use App\Comment;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
 class PostController extends Controller
 {   
     
@@ -27,12 +28,14 @@ class PostController extends Controller
     }
 
     public function store(StorePostRequest $request)
-    {
+    {  
         $post = request()->all();
+        $path = Storage::putFile('avatars', $request->file('avatar'));
         Post::create([
             'title' => $post['title'],
             'description' => $post['description'],
             'user_id' => $post['post_creator'],
+            'path' => $path,
         ]);
         return redirect()->route('posts.index');            
     }
@@ -66,17 +69,22 @@ class PostController extends Controller
     public function update($postId,UpdatePostRequest $request){
        
         $post = request()->all();
+        
+        Storage::delete(Post::find($postId)->path);
+        $path = Storage::putFile('avatars', $request->file('avatar'));
+        
         Post::where('id',$postId)->update([
             'title' => $post['Title'],
             'description' =>  $post ['Description'],   
-            'user_id' => $post['post_creator']         
+            'user_id' => $post['post_creator'],
+            'path' => $path,       
         ]);
         return redirect()->route('posts.index');
       
     }
     public function destroy($postId)
     {
-       
+        Storage::delete(Post::find($postId)->path);
         $post = Post::find($postId);
         $post->delete();
         return redirect()->route('posts.index');              

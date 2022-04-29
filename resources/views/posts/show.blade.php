@@ -28,6 +28,10 @@
         </div>
         <div class="card-body">
             <div>
+                <image  style="width:200px;" src='{{asset("storage/app/$post->path")}}'></image>
+    
+            </div>
+            <div>
                 <span style="font-size: 1.2rem; font-weight: bold">Name: </span>
                 {{ $post->user ? $post->user->name : 'Not Found' }}
             </div>
@@ -39,6 +43,7 @@
                 <span style="font-size: 1.2rem; font-weight: bold">Created at: </span>
                 {{ $created_at }}
             </div>
+      
         </div>
     </div>
     <div class="card mt-5">
