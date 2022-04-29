@@ -27,6 +27,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" href="{{ route('posts.index') }}">All Posts</a>
+                    </div>
+                </div>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -77,6 +82,7 @@
                     </ul>
                 </div>
             </div>
+        
         </nav>
 
         <main class="container">

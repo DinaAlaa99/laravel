@@ -29,13 +29,15 @@
 
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Post Creator</label>
-            <select class="form-control" name='post_creator'>
+            <select class="form-control @error('post_creator') is-invalid @enderror" name='post_creator'>
                 @foreach ($users as $user)
                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
-
             </select>
         </div>
+        @error('post_creator')
+        <div class="alert alert-danger ">{{ $message }}</div>
+        @enderror
 
         <button class="btn btn-success">Create</button>
     </form>
